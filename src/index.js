@@ -2,18 +2,34 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import configureStore from './store'
+import { fetchCatGifs } from './actions'
 import './index.css'
 import App from './App'
+import About from './About'
 import * as serviceWorker from './serviceWorker'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+
+import SiteNav from "./components/SiteNav";
+
+const store = configureStore();
+window.store = store;
+
+store.dispatch(fetchCatGifs());
+
 
 ReactDOM.render(
-  <Provider store={configureStore()}>
-    <Router>
+  <Provider store={store}>
+    <BrowserRouter>
       <div>
-        <Route exact path="/" component={App} />
+        <header>
+          <SiteNav />
+        </header>
+        <Switch>
+          <Route exact path="/" component={App} />
+          <Route path="/about" component={About} />
+        </Switch>
       </div>
-    </Router>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 )

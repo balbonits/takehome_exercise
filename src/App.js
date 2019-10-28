@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class App extends Component {
   render() {
@@ -13,4 +13,4 @@ class App extends Component {
   }
 }
 
-export default connect()(App)
+export default connect()(App);
