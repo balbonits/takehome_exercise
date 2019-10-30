@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import configureStore from './store'
-import { fetchCatGifs } from './actions'
+import store from './store'
 import './index.css'
 import App from './App'
 import About from './About'
@@ -11,11 +10,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import SiteNav from "./components/SiteNav";
 
-const store = configureStore();
-window.store = store;
-
-store.dispatch(fetchCatGifs());
-
+import 'semantic-ui-css/semantic.min.css';
 
 ReactDOM.render(
   <Provider store={store}>

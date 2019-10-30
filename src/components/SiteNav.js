@@ -1,11 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { Menu } from "semantic-ui-react";
 
-const SiteNav = () => {
-    return (<nav className={"site-nav"}>
-        <Link to={"/"}>Home</Link>
-        <Link to={"/about"}>About</Link>
-    </nav>);
+const SiteNav = (props) => {
+    return (<Menu>
+        <Menu.Item as={NavLink} exact to={"/"} >Home</Menu.Item>
+        <Menu.Item as={NavLink} to={"/about"} >About</Menu.Item>
+    </Menu>);
 };
 
 export default SiteNav;

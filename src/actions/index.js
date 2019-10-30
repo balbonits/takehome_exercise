@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const apiUrl = '//api.giphy.com/v1';
 const apiKey = '3ZvKznLHZ509dWMsni4Bsg9PVWO1CdoM';
-const searchQuery = `api_key=${apiKey}&q=cats`;
+const searchQuery = `api_key=${apiKey}&q=cats&limit=5`;
 
 
 export const getCatGifs = content => {
@@ -13,13 +13,18 @@ export const getCatGifs = content => {
     };
 }
 
-export const fetchCatGifs = (offset = 0) => {
-    const gifCatsUrl = `${apiUrl}/gifs/search?${searchQuery}&offset=${offset}`;
+// async actions
+// NOTE: actions that returns a function, and it returns a promise
+
+export const fetchCatGifs = () => {
+    const gifCatsUrl = `${apiUrl}/gifs/search?${searchQuery}`;
     return (dispatch) => {
         return axios.get(gifCatsUrl)
             .then(response => {
-                dispatch(getCatGifs(response.data));
+                const { data: content } = response.data; 
+                dispatch(getCatGifs(content));
             })
+            .then()
             .catch(error => {
                 throw (error);
             });
